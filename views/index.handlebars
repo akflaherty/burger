@@ -1,41 +1,49 @@
-<h2>Burgers!</h2>
+<div class="container">
+	<div class="row">
+		<h2>Burgers!</h2>
+		<img id="burger-img" src="/assets/img/burger.png">
+	</div>
 
-<div>
-	<h2>Burgers to eat</h2>
-	{{#each burgers}}
-		{{#if devoured}}
-		{{else}}
-			<p>
-				<span>
-					{{this.id}}. {{this.burger_name}}
-					<button class="eat-burger" data-id={{this.id}}>Eat it!</button>
-				</span>
-			</p>
-		{{/if}}
-	{{/each}}
+	<div class="row">
+		<div id="not-eaten-div" class="col-lg-6 col-sm-12">
+			<h2>Burgers to eat</h2>
+			{{#each burgers}}
+				{{#if devoured}}
+				{{else}}
+					<p>
+						<span>
+							{{this.id}}. {{this.burger_name}}
+							<button class="eat-burger" data-id={{this.id}}>Eat it!</button>
+						</span>
+					</p>
+				{{/if}}
+			{{/each}}
+		</div>
+
+		<div id="eaten-div" class="col-lg-6 col-sm-12">
+			<h2>Burgers eaten</h2>
+			{{#each burgers}}
+				{{#if devoured}}
+					<p>
+						<span>{{this.id}}. {{burger_name}}</span>
+					</p>
+				{{/if}}
+			{{/each}}
+		</div>
+	</div>
+	<div id="add-div">
+		<h2>Add a Burger</h2>
+		<form class="create-form">
+
+		  <div class="form-group">
+		    <label for="burger">Burger Name:</label>
+		    <input type="text" id="burger" name="name">
+		  </div>
+		  <button type="submit">Add Burger</button>
+		</form>
+	</div>
+
 </div>
-
-<div>
-	<h2>Burgers eaten</h2>
-	{{#each burgers}}
-		{{#if devoured}}
-			<p>
-				<span>{{this.id}}. {{burger_name}}</span>
-			</p>
-		{{/if}}
-	{{/each}}
-</div>
-
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="burger">Burger Name:</label>
-    <input type="text" id="burger" name="name">
-  </div>
-  <button type="submit">Add Burger</button>
-</form>
-
 <script type="text/javascript">
 	$(function() {
 	    $(".eat-burger").on("click", function(event) {

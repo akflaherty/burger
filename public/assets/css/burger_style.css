@@ -1,3 +1,8 @@
 body {
 	background: #ede86f;
 }
+
+#burger-img {
+	height: 80px;
+	width: 80px;
+}
