@@ -10,9 +10,16 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "public/test.html"));
-});
+app.use(express.static("public"));
+
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+var routes = require("./controllers/burgers_controller.js");
+app.use("/", routes);
 
 // Starts the server to begin listening
 app.listen(PORT, function() {
